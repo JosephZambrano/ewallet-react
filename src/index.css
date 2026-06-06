@@ -1,0 +1,105 @@
+/* Importa Tailwind v4 — una sola línea en lugar de las 3 directivas */
+@import "tailwindcss";
+
+/* Importamos las fuentes */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+/* Variables globales del tema */
+:root {
+  --color-bg-primary:    #0A0B0F;
+  --color-bg-secondary:  #13151C;
+  --color-bg-tertiary:   #1C1F2A;
+  --color-bg-elevated:   #252836;
+
+  --color-accent-blue:   #3B82F6;
+  --color-accent-green:  #10B981;
+  --color-accent-red:    #EF4444;
+  --color-accent-amber:  #F59E0B;
+  --color-accent-purple: #8B5CF6;
+
+  --color-txt-primary:   #F1F5F9;
+  --color-txt-secondary: #94A3B8;
+  --color-txt-muted:     #475569;
+
+  --color-border-default: #1E2333;
+  --color-border-strong:  #2A2F42;
+
+  --font-family-sans: 'DM Sans', sans-serif;
+  --font-family-mono: 'DM Mono', monospace;
+
+  --radius-xl:  16px;
+  --radius-2xl: 20px;
+}
+
+/* Estilos base globales */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-txt-primary);
+    font-family: var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #252836; border-radius: 2px; }
+}
+
+/* Clases reutilizables */
+@layer components {
+  .card {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-xl);
+    padding: 1.25rem;
+  }
+
+  .input-base {
+    width: 100%;
+    background-color: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border-strong);
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-txt-primary);
+    outline: none;
+    transition: border-color 150ms;
+  }
+
+  .input-base:focus {
+    border-color: var(--color-accent-blue);
+  }
+
+  .input-base::placeholder {
+    color: var(--color-txt-muted);
+  }
+}
+
+/* Estilos de impresión — solo aplican al hacer Ctrl+P o window.print() */
+@media print {
+  /* Fondo blanco y texto oscuro para impresión */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Ocultar elementos que no van en el PDF */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Ocultar sidebar */
+  aside {
+    display: none !important;
+  }
+
+  /* El contenido ocupa todo el ancho */
+  main {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+}
