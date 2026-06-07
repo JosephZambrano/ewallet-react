@@ -11,11 +11,12 @@ import { ExpenseDonutChart }     from '../components/charts/DonutChart'
 import { StatCardSkeleton, TransactionRowSkeleton } from '../components/ui'
 
 const categoryIcons = {
+  'Supermercado':    { icon: '🛒', bg: 'rgba(16,185,129,0.1)'  },
   'Comida':          { icon: '🍔', bg: 'rgba(245,158,11,0.1)'  },
   'Transporte':      { icon: '🚗', bg: 'rgba(59,130,246,0.1)'  },
   'Salud':           { icon: '💊', bg: 'rgba(139,92,246,0.1)'  },
   'Suscripciones':   { icon: '📱', bg: 'rgba(239,68,68,0.1)'   },
-  'Entretenimiento': { icon: '🎬', bg: 'rgba(245,158,11,0.1)'  },
+  'Entretenimiento': { icon: '🎬', bg: 'rgba(245,158,11,0.1)'  }, 
   'Servicios':       { icon: '💡', bg: 'rgba(6,182,212,0.1)'   },
   'Salario':         { icon: '💼', bg: 'rgba(16,185,129,0.1)'  },
   'Freelance':       { icon: '💻', bg: 'rgba(59,130,246,0.1)'  },
@@ -121,13 +122,13 @@ export function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <StatCard label="Saldo total"      value={balance}   icon={Wallet}          iconColor="#3B82F6" loading={loading} />
         <StatCard label="Ingresos del mes" value={income}    icon={ArrowDownCircle} iconColor="#10B981" deltaLabel="Este mes" delta={1}  loading={loading} />
         <StatCard label="Gastos del mes"   value={expenses}  icon={ArrowUpCircle}   iconColor="#EF4444" deltaLabel="Este mes" delta={-1} loading={loading} />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="card">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold">Ingresos vs Gastos</h2>

@@ -124,7 +124,7 @@ export function ReportsPage() {
       </div>
 
       {/* KPIs del mes seleccionado */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <KpiCard
           label="Ingresos"
           value={formatCurrency(metrics.income)}
@@ -173,7 +173,7 @@ export function ReportsPage() {
       )}
 
       {/* Gráficos */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
         {/* Tendencia del saldo */}
         <div className="card">

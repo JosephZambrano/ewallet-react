@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useAuthStore } from '../store/authStore'
 import { createScheduledItem } from '../services/scheduled.service'
 import { scheduledItemSchema } from '../lib/validations'
-import { Modal, Button, Input } from './ui'
+import { Modal, Button, Input } from './ui'  
 
 const FREQUENCY_OPTIONS = [
   { value: 'weekly',   label: 'Semanal'   },
@@ -14,14 +14,14 @@ const FREQUENCY_OPTIONS = [
 ]
 
 const TYPE_OPTIONS = [
-  { value: 'expense', label: '💸 Gasto',  activeClass: 'bg-red-500/15 border-red-500/40 text-[var(--color-accent-red)]'            },
-  { value: 'saving',  label: '🏦 Ahorro', activeClass: 'bg-blue-500/15 border-blue-500/40 text-[var(--color-accent-blue)]'          },
-  { value: 'income',  label: '💰 Ingreso',activeClass: 'bg-emerald-500/15 border-emerald-500/40 text-[var(--color-accent-green)]'   },
+  { value: 'expense', label: '💸 Gasto',   activeClass: 'bg-red-500/15 border-red-500/40 text-[var(--color-accent-red)]'          },
+  { value: 'saving',  label: '🏦 Ahorro',  activeClass: 'bg-blue-500/15 border-blue-500/40 text-[var(--color-accent-blue)]'        },
+  { value: 'income',  label: '💰 Ingreso', activeClass: 'bg-emerald-500/15 border-emerald-500/40 text-[var(--color-accent-green)]' },
 ]
 
 const CATEGORIES = [
-  'Suscripciones','Comida','Transporte','Salud',
-  'Educación','Servicios','Ahorro','Salario','Otros'
+  'Suscripciones', 'Comida', 'Transporte', 'Salud',
+  'Educación', 'Servicios', 'Ahorro', 'Salario', 'Otros',
 ]
 
 export function ScheduledModal({ isOpen, onClose, onCreated }) {
@@ -33,8 +33,12 @@ export function ScheduledModal({ isOpen, onClose, onCreated }) {
   } = useForm({
     resolver: zodResolver(scheduledItemSchema),
     defaultValues: {
-      name: '', amount: '', type: 'expense',
-      frequency: 'monthly', day_of_month: '1', category: '',
+      name:         '',
+      amount:       '',
+      type:         'expense',
+      frequency:    'monthly',
+      day_of_month: '1',
+      category:     '',
     }
   })
 
@@ -69,17 +73,27 @@ export function ScheduledModal({ isOpen, onClose, onCreated }) {
 
         {/* Tipo */}
         <div>
-          <p className="text-xs font-medium text-[var(--color-txt-secondary)] uppercase tracking-wide mb-2">Tipo</p>
+          <p className="text-xs font-medium text-[var(--color-txt-secondary)] uppercase tracking-wide mb-2">
+            Tipo
+          </p>
           <div className="grid grid-cols-3 gap-2">
             {TYPE_OPTIONS.map(opt => (
-              <label key={opt.value} className={[
-                'flex items-center justify-center py-2 rounded-xl border cursor-pointer',
-                'text-xs font-medium transition-all duration-150',
-                selectedType === opt.value
-                  ? opt.activeClass
-                  : 'border-[var(--color-border-strong)] text-[var(--color-txt-muted)] hover:border-[var(--color-border-default)]'
-              ].join(' ')}>
-                <input type="radio" value={opt.value} className="hidden" {...register('type')} />
+              <label
+                key={opt.value}
+                className={[
+                  'flex items-center justify-center py-2 rounded-xl border cursor-pointer',
+                  'text-xs font-medium transition-all duration-150',
+                  selectedType === opt.value
+                    ? opt.activeClass
+                    : 'border-[var(--color-border-strong)] text-[var(--color-txt-muted)] hover:border-[var(--color-border-default)]'
+                ].join(' ')}
+              >
+                <input
+                  type="radio"
+                  value={opt.value}
+                  className="hidden"
+                  {...register('type')}
+                />
                 {opt.label}
               </label>
             ))}
@@ -109,7 +123,9 @@ export function ScheduledModal({ isOpen, onClose, onCreated }) {
             </label>
             <select className="input-base" {...register('frequency')}>
               {FREQUENCY_OPTIONS.map(opt => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
               ))}
             </select>
           </div>
@@ -136,13 +152,17 @@ export function ScheduledModal({ isOpen, onClose, onCreated }) {
               ))}
             </select>
             {errors.category && (
-              <p className="text-xs text-[var(--color-accent-red)]">{errors.category.message}</p>
+              <p className="text-xs text-[var(--color-accent-red)]">
+                {errors.category.message}
+              </p>
             )}
           </div>
         </div>
 
         <div className="flex gap-3 pt-1">
-          <Button type="button" variant="ghost" className="flex-1" onClick={onClose}>Cancelar</Button>
+          <Button type="button" variant="ghost" className="flex-1" onClick={onClose}>
+            Cancelar
+          </Button>
           <Button type="submit" className="flex-1" disabled={isSubmitting}>
             {isSubmitting ? 'Guardando…' : 'Guardar'}
           </Button>

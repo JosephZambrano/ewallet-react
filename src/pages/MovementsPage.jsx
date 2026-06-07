@@ -125,8 +125,8 @@ export function MovementsPage() {
           />
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
-          <SlidersHorizontal size={13} className="text-[var(--color-txt-muted)]" />
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
+          <SlidersHorizontal size={13} className="text-[var(--color-txt-muted)] flex-shrink-0" />
           {[
             { value: 'all',     label: 'Todos'    },
             { value: 'income',  label: 'Ingresos' },
@@ -300,18 +300,18 @@ function TransactionRow({ tx, isLast, onDelete, onEdit }) {
         </p>
 
         <button
-          onClick={(e) => { e.stopPropagation(); onEdit() }}
-          className="opacity-0 group-hover:opacity-100 w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-txt-muted)] hover:bg-blue-500/10 hover:text-[var(--color-accent-blue)] transition-all"
-        >
-          <Pencil size={13} />
-        </button>
+            onClick={(e) => { e.stopPropagation(); onEdit() }}
+            className="opacity-100 md:opacity-0 md:group-hover:opacity-100 w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-txt-muted)] hover:bg-blue-500/10 hover:text-[var(--color-accent-blue)] transition-all"
+          >
+            <Pencil size={13} />
+          </button>
 
-        <button
-          onClick={(e) => { e.stopPropagation(); onDelete() }}
-          className="opacity-0 group-hover:opacity-100 w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-txt-muted)] hover:bg-red-500/10 hover:text-[var(--color-accent-red)] transition-all"
-        >
-          <Trash2 size={13} />
-        </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); onDelete() }}
+            className="opacity-100 md:opacity-0 md:group-hover:opacity-100 w-7 h-7 rounded-lg flex items-center justify-center text-[var(--color-txt-muted)] hover:bg-red-500/10 hover:text-[var(--color-accent-red)] transition-all"
+          >
+            <Trash2 size={13} />
+          </button>
       </div>
     </div>
   )

@@ -2,10 +2,7 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from 'react-router-dom'
-import {
-  User, Lock, Bell, LogOut, ChevronRight,
-  Check, ShieldCheck, Globe
-} from 'lucide-react'
+import { User, Bell, LogOut, ChevronRight, Check, ShieldCheck, Globe } from 'lucide-react'
 import { useAuthStore }  from '../store/authStore'
 import { logoutUser, updateProfile, updatePassword, getProfile } from '../services/auth.service'
 import { profileSchema, changePasswordSchema } from '../lib/validations'
@@ -105,23 +102,21 @@ export function SettingsPage() {
       </div>
 
       {/* Tabs de secciones */}
-      <div className="flex gap-1 bg-[var(--color-bg-secondary)] border border-[var(--color-border-default)] rounded-xl p-1">
+      <div className="flex gap-1 bg-[var(--color-bg-secondary)] border border-[var(--color-border-default)] rounded-xl p-1 w-full lg:w-fit">
         {[
           { key: 'profile',     label: 'Perfil',       icon: User       },
           { key: 'security',    label: 'Seguridad',    icon: ShieldCheck },
           { key: 'preferences', label: 'Preferencias', icon: Bell       },
         ].map(({ key, label, icon: Icon }) => (
-          <button
-            key={key}
-            onClick={() => setActiveSection(key)}
-            className={cn(
-              'flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium transition-all duration-150',
-              activeSection === key
-                ? 'bg-[var(--color-bg-elevated)] text-[var(--color-txt-primary)]'
-                : 'text-[var(--color-txt-muted)] hover:text-[var(--color-txt-primary)]'
-            )}
-          >
-            <Icon size={14} />{label}
+          <button className={cn(
+            'flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg',
+            'text-xs sm:text-sm font-medium transition-all duration-150',
+            activeSection === key
+              ? 'bg-[var(--color-bg-elevated)] text-[var(--color-txt-primary)]'
+              : 'text-[var(--color-txt-muted)] hover:text-[var(--color-txt-primary)]'
+          )}>
+            <Icon size={14} />
+            <span className="hidden sm:inline">{label}</span>
           </button>
         ))}
       </div>
@@ -165,6 +160,7 @@ export function SettingsPage() {
         loading={logoutLoading}
         title="Cerrar sesión"
         description="¿Estás seguro que quieres cerrar sesión?"
+        variant="logout" 
       />
     </div>
   )
